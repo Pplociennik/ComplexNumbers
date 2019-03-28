@@ -50,6 +50,8 @@ public class Main {
         System.out.println("\n&&---------------------QUBITY---------------------&&\n");
 
         System.out.println(new Qubit());
+        Qubit q = new Qubit(new ComplexNumber(0, 0), new ComplexNumber(1, 0));
+        System.out.println(Qubit.PauliZ(q));
 
     }
 }

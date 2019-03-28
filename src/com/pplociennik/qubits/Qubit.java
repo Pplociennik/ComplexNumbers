@@ -70,6 +70,6 @@ public class Qubit {
 
     @Override
     public String toString() {
-        return "<" + alpha + "|" + beta + ">";
+        return "[" + alpha + ", " + beta + "]";
     }
 }

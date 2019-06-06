@@ -3,6 +3,10 @@ package com.pplociennik.qubits;
 import com.pplociennik.complexNumbers.ComplexNumber;
 import com.pplociennik.vectors.Vector;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 public class Qubit {
 
     private Vector vector;
@@ -66,6 +70,25 @@ public class Qubit {
 
     public static Qubit Hadamard(Qubit qubit) {
         return new Qubit((qubit.alpha.add(qubit.beta)).divide(new ComplexNumber(Math.sqrt(2), 0)), (qubit.alpha.subtract(qubit.beta)).divide(new ComplexNumber(Math.sqrt(2), 0)));
+    }
+
+    public static Qubit Measure(Qubit qubit) {
+        ComplexNumber alpha = qubit.alpha.divide(new ComplexNumber(qubit.alpha.getAbsoluteValue(), 0));
+        ComplexNumber beta = qubit.beta.divide(new ComplexNumber(qubit.beta.getAbsoluteValue(), 0));
+        Random rand = new Random();
+        double pA = Math.pow(qubit.alpha.getAbsoluteValue(), 2);
+        double pB = Math.pow(qubit.beta.getAbsoluteValue(), 2);
+        List<ComplexNumber> result = new ArrayList<>();
+        for (int i = 0; i < (pA * 100); i++)
+            result.add(alpha);
+        for (int i = 0; i < (pB * 100); i++)
+            result.add(beta);
+        int n = rand.nextInt(result.size());
+        ComplexNumber c = result.get(n);
+        if (c == alpha)
+            return new Qubit(alpha, new ComplexNumber(0, 0));
+        else
+            return new Qubit(new ComplexNumber(0, 0), beta);
     }
 
     @Override

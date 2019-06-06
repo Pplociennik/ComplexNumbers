@@ -51,7 +51,32 @@ public class Main {
 
         System.out.println(new Qubit());
         Qubit q = new Qubit(new ComplexNumber(0, 0), new ComplexNumber(1, 0));
+        Qubit entry = new Qubit(new ComplexNumber(0, 0), new ComplexNumber(1, 0));
+        Qubit entry2 = new Qubit(new ComplexNumber(1, 0), new ComplexNumber(0, 0));
+        System.out.println(new Qubit());
         System.out.println(Qubit.PauliZ(q));
+        System.out.println(Qubit.Measure(entry));
+        System.out.println(Qubit.Measure(entry2));
+
+        System.out.println("\n");
+
+        for (int i = 0; i < 10; i++) {
+            Qubit qTest = new Qubit();
+            System.out.println(Qubit.Measure(qTest));
+        }
+
+        System.out.println("\n");
+
+        Qubit doPomiarow = new Qubit();
+        System.out.println(doPomiarow + "\n");
+        for (int i = 0; i < 100; i++) {
+            System.out.println(Qubit.Measure(doPomiarow));
+            try {
+                Thread.sleep(5);
+            } catch (InterruptedException e1) {
+                e1.printStackTrace();
+            }
+        }
 
     }
 }
